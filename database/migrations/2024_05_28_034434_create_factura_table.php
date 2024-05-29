@@ -20,7 +20,7 @@ return new class extends Migration
             $table->float('impuesto', 8, 2);
             $table->float('total_con_impuesto', 8, 2);
             $table->string('direccion');
-            $table->morphs('facturable');
+            $table->ForeignId('ventas_id')->constrained('ventas')->onDelete('cascade');
             $table->ForeignId('usuario_id')->constrained('usuario')->onDelete('cascade');
             $table->timestamps();
         });
