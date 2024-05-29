@@ -21,8 +21,8 @@ class VentasItem extends Model
     {
         return $this->belongsTo(Venta::class, 'venta_id'); // Debes especificar el nombre del campo de la clave foránea
     }
-    public function Producto()
+    public function producto()
     {
-        return $this->belongsTo(Venta::class, 'producto_id'); // Debes especificar el nombre del campo de la clave foránea
+        return $this->belongsTo(Producto::class, 'producto_id'); // Debes especificar el nombre del campo de la clave foránea
     }
 }

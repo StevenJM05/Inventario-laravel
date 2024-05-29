@@ -14,13 +14,16 @@ class Compras_item extends Model
         'descuento',
         'precio_unitario',
         'total'
-        
+
     ];
     use HasFactory;
 
     public function compra()
     {
-        return $this->belongsTo(Compra::class);
+        return $this->belongsTo(Compra::class, 'compra_id');
     }
-
+    public function Producto()
+    {
+        return $this->belongsTo(Producto::class, 'producto_id');
+    }
 }

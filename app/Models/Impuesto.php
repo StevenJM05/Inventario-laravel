@@ -13,8 +13,8 @@ class Impuesto extends Model
 
     use HasFactory;
 
-    public function productos()
+    public function ventas()
     {
-        return $this->hasMany(Productos::class);
+        return $this->hasMany(Ventas::class);
     }
 }
