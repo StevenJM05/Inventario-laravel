@@ -19,10 +19,10 @@ class VentasItem extends Model
     use HasFactory;
     public function venta()
     {
-        return $this->belongsTo(Venta::class, 'venta_id'); // Debes especificar el nombre del campo de la clave foránea
+        return $this->belongsTo(Venta::class, 'venta_id'); 
     }
     public function producto()
     {
-        return $this->belongsTo(Producto::class, 'producto_id'); // Debes especificar el nombre del campo de la clave foránea
+        return $this->belongsTo(Producto::class, 'producto_id'); 
     }
 }

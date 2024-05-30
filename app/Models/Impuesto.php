@@ -15,6 +15,6 @@ class Impuesto extends Model
 
     public function ventas()
     {
-        return $this->hasMany(Ventas::class);
+        return $this->hasMany(Venta::class);
     }
 }

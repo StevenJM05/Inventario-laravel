@@ -14,6 +14,6 @@ class Categoria extends Model
     use HasFactory;
     public function productos()
     {
-        return $this->hasMany(Productos::class);
+        return $this->hasMany(Producto::class);
     }
 }

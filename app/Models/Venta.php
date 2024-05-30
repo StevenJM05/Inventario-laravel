@@ -19,11 +19,11 @@ class Venta extends Model
     use HasFactory;
     public function usuario()
     {
-        return $this->belongsTo(Usuario::class, 'usuario_id'); // Debes especificar el nombre del campo de la clave foránea
+        return $this->belongsTo(Usuario::class, 'usuario_id'); 
     }
     public function ventas_items()
     {
-        return $this->hasMany(Ventas_items::class);
+        return $this->hasMany(VentasItem::class);
     }
     public function factura()
     {

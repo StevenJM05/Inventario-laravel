@@ -19,6 +19,6 @@ class Factura extends Model
     use HasFactory;
 
     public function ventas(){
-        return $this->hasOne(Ventas::class);
+        return $this->hasOne(Venta::class);
     }
 }

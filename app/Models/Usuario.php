@@ -15,6 +15,6 @@ class Usuario extends Model
 
     public function Ventas()
     {
-        return $this->hasMany(Ventas::class);
+        return $this->hasMany(Venta::class);
     }
 }

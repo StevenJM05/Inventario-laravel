@@ -27,18 +27,18 @@ class Producto extends Model
     }
     public function categorias()
     {
-        return $this->belongsTo(Impuestos::class, 'categorias_id');
+        return $this->belongsTo(Impuesto::class, 'categorias_id');
     }
     public function unidad_medida()
     {
-        return $this->belongsTo(Unidad_medida::class, 'unidad_medida_id');
+        return $this->belongsTo(UnidadMedida::class, 'unidad_medida_id');
     }
     public function impuestos()
     {
-        return $this->belongsTo(Impuestos::class, 'impuestos_id');
+        return $this->belongsTo(Impuesto::class, 'impuestos_id');
     }
     public function compras_items()
     {
-        return $this->hasMany(Compras_items::class);
+        return $this->hasMany(Compras_item::class);
     }
 }

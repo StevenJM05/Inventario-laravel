@@ -15,7 +15,7 @@ class productoImpuesto extends Model
 
     public function productos()
     {
-        return $this->belongsTo(Productos::class, 'producto_id');
+        return $this->belongsTo(Producto::class, 'producto_id');
     }
     public function impuesto()
     {
