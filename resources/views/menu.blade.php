@@ -76,9 +76,9 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline">Product</span>
-                                        2</a>
+                                    <a href="{{route('marcas.index')}}" class="nav-link px-0"> <span
+                                            class="d-none d-sm-inline">Marcas</span>
+                                        </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link px-0"> <span

@@ -10,7 +10,7 @@ class CategoriaController extends Controller
     //Mostrar 
     public function index()
     {
-        $categorias = Categoria::all();
+        $categorias = Categoria::paginate(10);
         return view('categorias.index', compact('categorias'));
     }
 
