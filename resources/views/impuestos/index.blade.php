@@ -1,18 +1,19 @@
 @extends('menu')
 
 @section('content')
-    <div class="card">
-        <div class="card-header text-white" style="background-color: blueviolet">
+    <div class="card m-3">
+        <div class="card-header text-white bg-dark">
             <h1>Impuestos</h1>
         </div>
         <div class="card-body">
             <div class="container mt-5">
                 @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close bg-white" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
                 @endif
-
+                <button class="btn btn text-white bg-dark" data-bs-toggle="modal" data-bs-target="#createModal">Crear Impuesto</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -27,10 +28,10 @@
                                 <td>{{ $impuesto->id }}</td>
                                 <td>{{ $impuesto->porcentaje }}</td>
                                 <td>
-                                    <button class="btn btn" style="border-color: blueviolet" data-bs-toggle="modal" data-bs-target="#updateModal{{ $impuesto->id }}">
+                                    <button class="btn btn bg-dark text-white" data-bs-toggle="modal" data-bs-target="#updateModal{{ $impuesto->id }}">
                                         <i class="fa-solid fa-gears" style="color: #B197FC;"></i> Actualizar
                                     </button>
-                                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $impuesto->id }}">
+                                    <button class="btn btn bg-dark text-white" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $impuesto->id }}">
                                         <i class="fa-solid fa-rectangle-xmark" style="color: #ff0000;"></i> Eliminar
                                     </button>
                                 </td>
@@ -40,9 +41,9 @@
                             <div class="modal fade" id="updateModal{{ $impuesto->id }}" tabindex="-1" aria-labelledby="updateModalLabel{{ $impuesto->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header bg-dark text-white">
                                             <h5 class="modal-title" id="updateModalLabel{{ $impuesto->id }}">Actualizar Impuesto</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <form action="{{ route('impuestos.update', $impuesto->id) }}" method="POST">
@@ -52,7 +53,7 @@
                                                     <label for="porcentaje" class="form-label">Porcentaje</label>
                                                     <input type="number" class="form-control" id="porcentaje" name="porcentaje" step='0.01' value="{{ $impuesto->porcentaje }}" required>
                                                 </div>
-                                                <button type="submit" class="btn btn text-white" style="background-color: blueviolet">Actualizar</button>
+                                                <button type="submit" class="btn btn text-white bg-dark">Actualizar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -63,9 +64,9 @@
                             <div class="modal fade" id="deleteModal{{ $impuesto->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $impuesto->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header bg-dark text-white">
                                             <h5 class="modal-title" id="deleteModalLabel{{ $impuesto->id }}">Eliminar Impuesto</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
                                             <p>¿Estás seguro de que deseas eliminar este impuesto?</p>
@@ -87,7 +88,7 @@
                 
                 {{ $impuestos->links() }} <!-- Agregar enlaces de paginación -->
 
-                <button class="btn btn text-white" data-bs-toggle="modal" data-bs-target="#createModal" style="background-color: blueviolet">Crear Impuesto</button>
+                
             </div>
         </div>
 
@@ -95,9 +96,9 @@
         <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header bg-dark text-white">
                         <h5 class="modal-title" id="createModalLabel">Crear Nuevo Impuesto</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <form action="{{ route('impuestos.store') }}" method="POST">
@@ -106,7 +107,7 @@
                                 <label for="porcentaje" class="form-label">Porcentaje</label>
                                 <input type="number" class="form-control" id="porcentaje" name="porcentaje" step="0.01" required>
                             </div>
-                            <button type="submit" class="btn btn text-white" style="background-color: blueviolet">Guardar</button>
+                            <button type="submit" class="btn btn text-white bg-dark">Guardar</button>
                         </form>
                     </div>
                 </div>

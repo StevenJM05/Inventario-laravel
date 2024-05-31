@@ -1,8 +1,8 @@
 @extends('menu')
 
 @section('content')
-    <div class="card">
-        <div class="card-header text-white" style="background-color: blueviolet">
+    <div class="card m-3">
+        <div class="card-header text-white" style="background-color: rgb(0, 0, 0)">
             <h1>Unidades de Medida</h1>
         </div>
         <div class="card-body">
@@ -12,7 +12,7 @@
                         {{ session('success') }}
                     </div>
                 @endif
-
+                <button class="btn btn text-white bg-dark mb-3" data-bs-toggle="modal" data-bs-target="#createModal">Crear Unidad de Medida</button>
                 <table class="table">
                     <thead>
                         <tr>
@@ -29,10 +29,10 @@
                                 <td>{{ $unidadMedida->nombre }}</td>
                                 <td>{{ $unidadMedida->prefijo }}</td>
                                 <td>
-                                    <button class="btn btn" style="border-color: blueviolet" data-bs-toggle="modal" data-bs-target="#updateModal{{ $unidadMedida->id }}">
+                                    <button class="btn btn bg-dark text-white"  data-bs-toggle="modal" data-bs-target="#updateModal{{ $unidadMedida->id }}">
                                         <i class="fa-solid fa-gears" style="color: #B197FC;"></i> Actualizar
                                     </button>
-                                    <button class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $unidadMedida->id }}">
+                                    <button class="btn btn bg-dark text-white" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $unidadMedida->id }}">
                                         <i class="fa-solid fa-rectangle-xmark" style="color: #ff0000;"></i> Eliminar
                                     </button>
                                 </td>
@@ -42,7 +42,7 @@
                             <div class="modal fade" id="updateModal{{ $unidadMedida->id }}" tabindex="-1" aria-labelledby="updateModalLabel{{ $unidadMedida->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header text-white bg-dark">
                                             <h5 class="modal-title" id="updateModalLabel{{ $unidadMedida->id }}">Actualizar Unidad de Medida</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -69,7 +69,7 @@
                             <div class="modal fade" id="deleteModal{{ $unidadMedida->id }}" tabindex="-1" aria-labelledby="deleteModalLabel{{ $unidadMedida->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
-                                        <div class="modal-header">
+                                        <div class="modal-header text-white bg-dark">
                                             <h5 class="modal-title" id="deleteModalLabel{{ $unidadMedida->id }}">Eliminar Unidad de Medida</h5>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
@@ -92,8 +92,6 @@
                 </table>
                 
                 {{ $unidadesMedida->links() }} {{-- Es para la paginacion --}}
-
-                <button class="btn btn text-white" data-bs-toggle="modal" data-bs-target="#createModal" style="background-color: blueviolet">Crear Unidad de Medida</button>
             </div>
         </div>
 
@@ -101,7 +99,7 @@
         <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header text-white bg-dark">
                         <h5 class="modal-title" id="createModalLabel">Crear Nueva Unidad de Medida</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
