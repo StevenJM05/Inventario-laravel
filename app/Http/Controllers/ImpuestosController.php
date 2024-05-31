@@ -24,12 +24,12 @@ class ImpuestosController extends Controller
         return redirect()->route('impuestos.index')->with('success', 'Impuesto creado exitosamente');
     }
 
-    public function update(Request $request, Impuesto $impuesto)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'porcentaje' => 'required|numeric',
         ]);
-
+        $impuesto = Impuesto::findOrFail($id);
         $impuesto->update($request->all());
 
         return redirect()->route('impuestos.index')->with('success', 'Impuesto actualizado exitosamente');

@@ -50,7 +50,7 @@
                                                 @method('PUT')
                                                 <div class="mb-3">
                                                     <label for="porcentaje" class="form-label">Porcentaje</label>
-                                                    <input type="number" class="form-control" id="porcentaje" name="porcentaje" value="{{ $impuesto->porcentaje }}" required>
+                                                    <input type="number" class="form-control" id="porcentaje" name="porcentaje" step='0.01' value="{{ $impuesto->porcentaje }}" required>
                                                 </div>
                                                 <button type="submit" class="btn btn text-white" style="background-color: blueviolet">Actualizar</button>
                                             </form>
@@ -104,7 +104,7 @@
                             @csrf
                             <div class="mb-3">
                                 <label for="porcentaje" class="form-label">Porcentaje</label>
-                                <input type="number" class="form-control" id="porcentaje" name="porcentaje" required>
+                                <input type="number" class="form-control" id="porcentaje" name="porcentaje" step="0.01" required>
                             </div>
                             <button type="submit" class="btn btn text-white" style="background-color: blueviolet">Guardar</button>
                         </form>

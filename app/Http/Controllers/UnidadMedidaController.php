@@ -25,13 +25,14 @@ class UnidadMedidaController extends Controller
         return redirect()->route('unidadesMedida.index')->with('success', 'Unidad de Medida creada exitosamente');
     }
 
-    public function update(Request $request, UnidadMedida $unidadMedida)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'nombre' => 'required|string|max:255',
             'prefijo' => 'required|string|max:10',
         ]);
 
+        $unidadMedida= UnidadMedida::findOrFail($id);
         $unidadMedida->update($request->all());
 
         return redirect()->route('unidadesMedida.index')->with('success', 'Unidad de Medida actualizada exitosamente');
