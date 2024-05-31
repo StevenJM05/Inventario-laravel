@@ -45,6 +45,7 @@ class LoginController extends Controller
         ])->onlyInput('email');
     }
 
+    // Cierre de sesion
     public function logout(Request $request)
     {
         Auth::logout();
