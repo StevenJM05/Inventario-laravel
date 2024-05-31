@@ -43,3 +43,6 @@ Route::delete('/unidadesMedida/{id}', [UnidadMedidaController::class, 'update'])
 
 //Rutas para impuestos
 Route::get('/impuestos', [ImpuestosController::class, 'index'])->name('impuestos.index');
+Route::post('/impuestos', [ImpuestosController::class, 'store'])->name('impuestos.store');
+Route::put('/impuestos/{id}', [ImpuestosController::class, 'update'])->name('impuestos.update');
+Route::delete('/impuestos/{id}', [ImpuestosController::class, 'destroy'])->name('impuestos.destroy');

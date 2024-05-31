@@ -86,7 +86,7 @@
                                         </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0"> <span
+                                    <a href="{{route('impuestos.index')}}" class="nav-link px-0"> <span
                                             class="d-none d-sm-inline">Impuestos</span>
                                         </a>
                                 </li>
