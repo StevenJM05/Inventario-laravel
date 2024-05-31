@@ -81,14 +81,19 @@
                                         </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline">Product</span>
-                                        3</a>
+                                    <a href="{{route('productos.index')}}" class="nav-link px-0"> <span
+                                            class="d-none d-sm-inline">Productos</span>
+                                        </a>
                                 </li>
                                 <li>
                                     <a href="#" class="nav-link px-0"> <span
-                                            class="d-none d-sm-inline">Product</span>
-                                        4</a>
+                                            class="d-none d-sm-inline">Impuestos</span>
+                                        </a>
+                                </li>
+                                <li>
+                                    <a href="{{route('unidadesMedida.index')}}" class="nav-link px-0"> <span
+                                            class="d-none d-sm-inline">Unidades de medida</span>
+                                        </a>
                                 </li>
                             </ul>
                         </li>

@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\ImpuestosController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\UnidadMedidaController;
+use App\Models\UnidadMedida;
 use Illuminate\Support\Facades\Route;
 
 //Rutas del Login 
@@ -26,3 +30,16 @@ Route::put('/marcas/{id}', [MarcaController::class, 'update'])->name('marcas.upd
 Route::delete('/marcas/{id}', [MarcaController::class, 'destroy'])->name('marcas.destroy');
 
 //Rutas de producto
+Route::get('/productos', [ProductoController::class, 'index'])->name('productos.index');
+Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
+Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
+Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+
+// Rutas para unidades de medida
+Route::get('/unidadesMedida', [UnidadMedidaController::class, 'index'])->name('unidadesMedida.index');
+Route::post('/unidadesMedida', [UnidadMedidaController::class, 'store'])->name('unidadesMedida.store');
+Route::put('/unidadesMedida/{id}', [UnidadMedidaController::class, 'update'])->name('unidadesMedida.update');
+Route::delete('/unidadesMedida/{id}', [UnidadMedidaController::class, 'update'])->name('unidadesMedida.destroy');
+
+//Rutas para impuestos
+Route::get('/impuestos', [ImpuestosController::class, 'index'])->name('impuestos.index');
