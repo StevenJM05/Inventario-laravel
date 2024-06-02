@@ -11,11 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        
-            Schema::table('impuestos', function (Blueprint $table) {
-                $table->string('nombre')->nullable()->after('porcentaje');
-            });
-        
+        Schema::table('productos', function (Blueprint $table) {
+            $table->float('precio', 8, 2);
+        });
     }
 
     /**
@@ -23,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('impuestos', function (Blueprint $table) {
-            $table->dropColumn('nombre');
+        Schema::table('productos', function (Blueprint $table) {
+            $table->dropColumn('precio');
         });
     }
 };

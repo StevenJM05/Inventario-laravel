@@ -19,6 +19,7 @@ class Producto extends Model
         'is_available',
         'stock',
         'impuesto_id',
+        'precio'
     ];
 
     public function marca()

@@ -30,6 +30,8 @@
                             <th>Disponibilidad</th>
                             <th>Stock</th>
                             <th>Impuesto</th>
+                            <th>Precio</th>
+                            <th>Precio total</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
@@ -47,6 +49,8 @@
                                 <td>{{ $producto->stock }}</td>
                                 <td>{{ $producto->impuestos?->nombre ?? 'N/A' }}-({{ $producto->impuestos?->porcentaje ?? 'N/A' }}%)
                                 </td>
+                                <td>{{ $producto->precio}}</td>
+                                <td> {{ $producto->precio + ($producto->precio * ($producto->impuestos->porcentaje / 100))}}</td>
                                 <td>
                                     <button class="btn btn bg-dark text-white" data-bs-toggle="modal"
                                         data-bs-target="#updateModal{{ $producto->id }}">
@@ -101,6 +105,10 @@
                                                                         {{ $marca->nombre }}</option>
                                                                 @endforeach
                                                             </select>
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="precio" class="form-label">Precio</label>
+                                                            <input class="form-control" type="number" step="0.01" name="precio" id="precio" value=" {{ $producto->precio }}" required>
                                                         </div>
                                                     </div>
 
@@ -234,6 +242,10 @@
                                             <option value="{{ $marca->id }}">{{ $marca->nombre }}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="precio" class="form-label">Precio</label>
+                                    <input class="form-control" type="number" step="0.01" name="precio" id="precio">
                                 </div>
                             </div>
 

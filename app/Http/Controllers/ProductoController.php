@@ -89,8 +89,8 @@ class ProductoController extends Controller
         $query = $request->get('q');
         $productos = Producto::where('nombre', 'LIKE', '%' . $query . '%')
             ->orWhere('codigo', 'LIKE', '%' . $query . '%')
-            ->take(10)
-            ->get();
-        return response()->json(['data' => $productos]);
+            ->paginate(6);
+
+        return response()->json($productos);
     }
 }
