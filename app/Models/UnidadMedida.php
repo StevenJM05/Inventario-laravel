@@ -7,12 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class UnidadMedida extends Model
 {
-    protected $table = 'unidad_medida';
-    protected $fillable = [
-        'nombre',
-        'prefijo'
-    ];
     use HasFactory;
+    protected $table = 'unidad_medida';
+    
+    protected $fillable = ['nombre', 'prefijo'];
+
     public function productos()
     {
         return $this->hasMany(Producto::class);

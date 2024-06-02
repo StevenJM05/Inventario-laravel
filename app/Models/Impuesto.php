@@ -7,14 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Impuesto extends Model
 {
-    protected $fillable = [
-        'porcentaje'
-    ];
-
     use HasFactory;
-
-    public function ventas()
+    protected $table = 'impuestos';
+    protected $fillable = ['nombre', 'porcentaje'];
+    
+    public function productos()
     {
-        return $this->hasMany(Venta::class);
+        return $this->hasMany(Producto::class);
     }
 }

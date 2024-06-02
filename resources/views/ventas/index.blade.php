@@ -1,0 +1,3 @@
+@extends('menu')
+
+@section('content')

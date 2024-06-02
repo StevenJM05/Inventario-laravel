@@ -10,7 +10,15 @@ class Producto extends Model
     use HasFactory;
 
     protected $fillable = [
-        'codigo', 'nombre', 'descripcion', 'marca_id', 'categorias_id', 'unidad_medida_id', 'is_available', 'stock'
+        'codigo',
+        'nombre',
+        'descripcion',
+        'marca_id',
+        'categorias_id',
+        'Unidad_medida_id',
+        'is_available',
+        'stock',
+        'impuesto_id',
     ];
 
     public function marca()
@@ -25,12 +33,12 @@ class Producto extends Model
 
     public function unidad_medida()
     {
-        return $this->belongsTo(UnidadMedida::class, 'unidad_medida_id');
+        return $this->belongsTo(UnidadMedida::class, 'Unidad_medida_id');
     }
 
     public function impuestos()
     {
-        return $this->belongsToMany(Impuesto::class, 'producto_impuestos', 'producto_id', 'impuesto_id');
+        return $this->belongsTo(Impuesto::class, 'impuesto_id');
     }
     
     public function compras_items()

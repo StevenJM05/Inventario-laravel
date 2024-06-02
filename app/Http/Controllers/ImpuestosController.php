@@ -16,6 +16,7 @@ class ImpuestosController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'nombre' => 'required|string|max:255',
             'porcentaje' => 'required|numeric',
         ]);
 
@@ -27,6 +28,7 @@ class ImpuestosController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'nombre' => 'required|string|max:255',
             'porcentaje' => 'required|numeric',
         ]);
         $impuesto = Impuesto::findOrFail($id);
