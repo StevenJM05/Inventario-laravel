@@ -13,7 +13,7 @@ class ProductoController extends Controller
 {
     public function index()
     {
-        $productos = Producto::with(['marca', 'categorias', 'unidad_medida', 'impuestos'])->get();
+        $productos = Producto::with(['marca', 'categorias', 'unidad_medida', 'impuestos'])->paginate(10);
         $marcas = Marca::all();
         $categorias = Categoria::all();
         $impuestos = Impuesto::all();
@@ -62,7 +62,7 @@ class ProductoController extends Controller
             'impuesto_id' => 'required|exists:impuestos,id',
             'is_available' => 'required|boolean',
             'stock' => 'required|integer|min:0',
-            
+
         ]);
 
         try {
@@ -70,7 +70,7 @@ class ProductoController extends Controller
             $producto->update($request->all());
 
             return redirect()->route('productos.index')->with('success', 'Producto actualizado exitosamente.');
-        } catch (\Exception ) {
+        } catch (\Exception) {
             return redirect()->back()->with('error', 'Hubo un error al intentar actualizar el producto.');
         }
     }
@@ -82,5 +82,15 @@ class ProductoController extends Controller
 
 
         return redirect()->route('productos.index')->with('success', 'Producto eliminado exitosamente.');
+    }
+
+    public function search(Request $request)
+    {
+        $query = $request->get('q');
+        $productos = Producto::where('nombre', 'LIKE', '%' . $query . '%')
+            ->orWhere('codigo', 'LIKE', '%' . $query . '%')
+            ->take(10)
+            ->get();
+        return response()->json(['data' => $productos]);
     }
 }

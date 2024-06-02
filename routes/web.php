@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UnidadMedidaController;
+use App\Http\Controllers\VentaController;
 use App\Models\UnidadMedida;
 use Illuminate\Support\Facades\Route;
 
@@ -34,6 +35,7 @@ Route::get('/productos', [ProductoController::class, 'index'])->name('productos.
 Route::post('/productos', [ProductoController::class, 'store'])->name('productos.store');
 Route::put('/productos/{id}', [ProductoController::class, 'update'])->name('productos.update');
 Route::delete('/productos/{id}', [ProductoController::class, 'destroy'])->name('productos.destroy');
+Route::get('search-products', [ProductoController::class, 'search'])->name('search-products');
 
 // Rutas para unidades de medida
 Route::get('/unidadesMedida', [UnidadMedidaController::class, 'index'])->name('unidadesMedida.index');
@@ -46,3 +48,6 @@ Route::get('/impuestos', [ImpuestosController::class, 'index'])->name('impuestos
 Route::post('/impuestos', [ImpuestosController::class, 'store'])->name('impuestos.store');
 Route::put('/impuestos/{id}', [ImpuestosController::class, 'update'])->name('impuestos.update');
 Route::delete('/impuestos/{id}', [ImpuestosController::class, 'destroy'])->name('impuestos.destroy');
+
+//Rutas para ventas
+Route::get('ventas/create', [VentaController::class, 'create'])->name('ventas.create');

@@ -104,7 +104,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('ventas.create')}}">
                     <i class='bx bx-history'></i>
                     <span class="link_name">History</span>
                 </a>
@@ -147,11 +147,7 @@
             });
         }
         let sidebar = document.querySelector(".sidebar");
-        let sidebarBtn = document.querySelector(".bx-menu");
-        console.log(sidebarBtn);
-        sidebarBtn.addEventListener("click", () => {
-            sidebar.classList.toggle("close");
-        });
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
