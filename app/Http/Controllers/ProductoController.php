@@ -85,12 +85,13 @@ class ProductoController extends Controller
     }
 
     public function search(Request $request)
-    {
-        $query = $request->get('q');
-        $productos = Producto::where('nombre', 'LIKE', '%' . $query . '%')
-            ->orWhere('codigo', 'LIKE', '%' . $query . '%')
-            ->paginate(6);
+{
+    $query = $request->get('q');
+    $productos = Producto::where('nombre', 'LIKE', '%' . $query . '%')
+        ->orWhere('codigo', 'LIKE', '%' . $query . '%')
+        ->with(['marca', 'impuestos'])  
+        ->paginate(2);
 
-        return response()->json($productos);
-    }
+    return response()->json($productos);
+}
 }
