@@ -17,9 +17,9 @@ class Venta extends Model
         'total'
     ];
     use HasFactory;
-    public function usuario()
+    public function user()
     {
-        return $this->belongsTo(Usuario::class, 'usuario_id'); 
+        return $this->belongsTo(User::class, 'usuario_id'); 
     }
     public function ventas_items()
     {

@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UnidadMedidaController;
 use App\Http\Controllers\VentaController;
 use App\Models\UnidadMedida;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 //Rutas del Login 
@@ -50,4 +51,5 @@ Route::put('/impuestos/{id}', [ImpuestosController::class, 'update'])->name('imp
 Route::delete('/impuestos/{id}', [ImpuestosController::class, 'destroy'])->name('impuestos.destroy');
 
 //Rutas para ventas
-Route::get('ventas/create', [VentaController::class, 'create'])->name('ventas.create');
+Route::get('ventas/create', [VentaController::class, 'create'])->middleware('auth')->name('ventas.create');
+Route::post('ventas', [VentaController::class, 'store'])->middleware('auth')->name('ventas.store');
