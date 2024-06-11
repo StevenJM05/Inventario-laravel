@@ -95,7 +95,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('ventas.index')}}">
                     <i class='bx bx-compass'></i>
                     <span class="link_name">Explore</span>
                 </a>

@@ -17,13 +17,14 @@ class Venta extends Model
         'total'
     ];
     use HasFactory;
+    
     public function user()
     {
         return $this->belongsTo(User::class, 'usuario_id'); 
     }
     public function ventas_items()
     {
-        return $this->hasMany(VentasItem::class);
+        return $this->hasMany(VentasItem::class, 'venta_id');
     }
     public function factura()
     {

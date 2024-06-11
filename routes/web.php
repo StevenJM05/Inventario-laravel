@@ -51,5 +51,8 @@ Route::put('/impuestos/{id}', [ImpuestosController::class, 'update'])->name('imp
 Route::delete('/impuestos/{id}', [ImpuestosController::class, 'destroy'])->name('impuestos.destroy');
 
 //Rutas para ventas
+Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
 Route::get('ventas/create', [VentaController::class, 'create'])->middleware('auth')->name('ventas.create');
-Route::post('ventas', [VentaController::class, 'store'])->middleware('auth')->name('ventas.store');
+Route::post('/ventas', [VentaController::class, 'store'])->middleware('auth')->name('ventas.store');
+Route::get('ventas/{id}', [VentaController::class, 'show'])->name('ventas.show');
+

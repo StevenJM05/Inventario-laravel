@@ -1,11 +1,11 @@
 @extends('menu')
 
 @section('content')
-    <div class="container">
+    <div class="container m-1">
         <div class="card">
             <div class="card-header bg-dark text-white">
                 <h1>Nueva Venta</h1>
-                @if (session('success'))
+                @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
                         <button type="button" class="btn-close bg-white" data-bs-dismiss="alert" aria-label="Close"></button>
