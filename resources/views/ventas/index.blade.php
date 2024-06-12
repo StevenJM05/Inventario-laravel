@@ -37,9 +37,9 @@
                                     </button>
                                 </td>
                                 <td>
-                                    <button type="button" class="btn btn-primary">
+                                    <a href="{{ route('ventas.factura.pdf', $venta->id) }}" class="btn btn-primary">
                                         <i class="fa-solid fa-receipt"></i>
-                                    </button>
+                                    </a>
                                 </td>
                             </tr>
                         @endforeach

@@ -67,9 +67,9 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-check form-switch mt-2">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="imprimir">
                                         <label class="form-check-label" for="flexSwitchCheckDefault">Imprimir factura</label>
-                                    </div>
+                                    </div> 
                                 </div>
                             </div>
                         </div>

@@ -56,3 +56,7 @@ Route::get('ventas/create', [VentaController::class, 'create'])->middleware('aut
 Route::post('/ventas', [VentaController::class, 'store'])->middleware('auth')->name('ventas.store');
 Route::get('ventas/{id}', [VentaController::class, 'show'])->name('ventas.show');
 
+//Factura
+Route::get('/ventas/{id}/factura', [VentaController::class, 'generarFacturaPDF'])->name('ventas.factura.pdf');
+
+
