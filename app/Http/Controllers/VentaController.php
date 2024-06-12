@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\VentasItemsResource;
 use App\Models\Factura;
 use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
 use App\Models\VentasItem;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,7 +15,7 @@ class VentaController extends Controller
 {
     public function index()
     {
-        $ventas = Venta::with('user')->paginate(10);
+        $ventas = Venta::with('user')->paginate(7);
         $users = User::all();
         $productos = Producto::all();
         return view('ventas.index', compact('ventas', 'users', 'productos'));
@@ -24,7 +24,7 @@ class VentaController extends Controller
     public function show($id)
     {
         $ventas_items = VentasItem::where('venta_id', $id)->get();
-        return response()->json($ventas_items);
+        return response()->json(VentasItemsResource::collection($ventas_items));
     }
 
     public function create()

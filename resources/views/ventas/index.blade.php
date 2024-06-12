@@ -54,7 +54,7 @@
                 <div class="modal-content">
                     <div class="modal-header text-white bg-dark">
                         <h5 class="modal-title" id="productsModalLabel">Productos de la venta</h5>
-                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close bg-white" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <table class="table table-bordered">
@@ -90,11 +90,11 @@
                     console.log(response); 
                     var productsBody = $('#modal-products-body');
                     productsBody.empty();
-                    if (response.ventas_items.length > 0) {
-                        response.ventas_items.forEach(function(item) {
+                    if (response.length > 0) {
+                        response.forEach(function(item) {
                             productsBody.append(
                                 '<tr>' +
-                                    '<td>' + item.producto.nombre + '</td>' +
+                                    '<td>' + item.nombre_producto + '</td>' +
                                     '<td>' + item.cantidad + '</td>' +
                                     '<td>' + item.precio_unidad + '</td>' +
                                     '<td>' + item.impuesto + '%</td>' +
