@@ -62,7 +62,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('users.index')}}">
                     <i class='bx bx-pie-chart-alt-2'></i>
                     <span class="link_name">Analytics</span>
                 </a>

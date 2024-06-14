@@ -24,7 +24,7 @@ class LoginController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('login');
+        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente');
     }
 
     // Inicio de sesión de usuario

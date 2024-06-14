@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UnidadMedidaController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentaController;
 use App\Models\UnidadMedida;
 use Illuminate\Support\Facades\Auth;
@@ -58,5 +59,9 @@ Route::get('ventas/{id}', [VentaController::class, 'show'])->name('ventas.show')
 
 //Factura
 Route::get('/ventas/{id}/factura', [VentaController::class, 'generarFacturaPDF'])->name('ventas.factura.pdf');
+
+//Rutas de usuario
+Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+
 
 

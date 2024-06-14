@@ -48,4 +48,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Venta::class);
     }
+
+    public function Rol(){
+        return $this->belongsTo(Rol::class);
+    }
 }

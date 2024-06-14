@@ -37,7 +37,7 @@
 <body>
     <div class="header">
         <h1>Factura</h1>
-        <p><strong>Cliente:</strong> {{ $factura->cliente }}</p>
+        <p><strong>Cliente:</strong> {{ $factura->cliente??'Desconocio'}}</p>
         <p><strong>Número de factura:</strong> {{ $factura->numero_factura }}</p>
         <p><strong>Fecha:</strong> {{ $factura->fecha }}</p>
     </div>
