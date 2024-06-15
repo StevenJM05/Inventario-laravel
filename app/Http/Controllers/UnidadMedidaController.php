@@ -39,7 +39,8 @@ class UnidadMedidaController extends Controller
     }
 
     public function destroy(UnidadMedida $unidadMedida)
-    {
+    {   
+        
         $unidadMedida->delete();
 
         return redirect()->route('unidadesMedida.index')->with('success', 'Unidad de Medida eliminada exitosamente');

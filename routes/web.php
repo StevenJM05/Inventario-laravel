@@ -9,15 +9,14 @@ use App\Http\Controllers\UnidadMedidaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentaController;
 use App\Models\UnidadMedida;
+use App\Models\Usuario;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 //Rutas del Login 
 Route::view('/', 'login')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
-Route::view('/registro', 'register')->name('registro');
 Route::view('/menu', 'menu')->middleware('auth')->name('menu');
-Route::post('/validar-registro', [LoginController::class, 'register'])->name('validar-registro');
 Route::get('/cerrar-sesion', [LoginController::class, 'logout'])->name('logout');
 
 //Rutas de categoria
@@ -62,6 +61,9 @@ Route::get('/ventas/{id}/factura', [VentaController::class, 'generarFacturaPDF']
 
 //Rutas de usuario
 Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
+Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
+Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/Usuario/{id}', [UserController::class, 'destroy'])->name('users.destroy');
 
 
 

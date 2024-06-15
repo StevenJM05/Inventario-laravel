@@ -9,24 +9,7 @@ use App\Models\User;
 
 class LoginController extends Controller
 {
-    // Registro de usuario
-    public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->save();
-
-        return redirect()->route('usuarios.index')->with('success', 'Usuario creado exitosamente');
-    }
-
+    
     // Inicio de sesión de usuario
     public function login(Request $request)
     {
@@ -53,4 +36,6 @@ class LoginController extends Controller
         $request->session()->regenerateToken();
         return redirect(route('login'));
     }
+
+    
 }
