@@ -4,7 +4,7 @@
     <div class="container m-1">
         <div class="card">
             <div class="card-header bg-dark text-white">
-                <h1>Nueva Venta</h1>
+                <h1>Nueva Compra</h1>
                 @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}
@@ -13,7 +13,7 @@
                 @endif
             </div>
             <div class="card-body">
-                <form action="{{ route('ventas.store') }}" method="POST">
+                <form action="{{ route('compras.store') }}" method="POST">
                     @csrf
                     <div class="row justify-content-center">
                         <div class="col-md-6">
@@ -24,18 +24,14 @@
                             <div id="pagination" class="mt-3"></div>
                         </div>
                         <div class="col-md-6 border">
-                            <div class="mb-3">
-                                <label for="cliente" class="form-label">Nombre del cliente</label>
-                                <input type="text" class="form-control" placeholder="Nombre del cliente" name="cliente" id="cliente" required>
-                            </div>
+    
                             <h5>Productos seleccionados:</h5>
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
                                         <th>Producto</th>
                                         <th>Cantidad</th>
-                                        <th>Precio Unidad</th>
-                                        <th>Impuesto</th>
+                                        <th>Precio Unitario</th>
                                         <th>Total</th>
                                         <th>Eliminar</th>
                                     </tr>
@@ -62,14 +58,8 @@
                             <div class="row m-3">
                                 <div class="col-md-6">
                                     <button class="btn btn-primary" type="submit" name="crear">
-                                        <i class="fa-solid fa-file-lines"></i> Confirmar venta
+                                        <i class="fa-solid fa-file-lines"></i> Confirmar compra
                                     </button>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="form-check form-switch mt-2">
-                                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" name="imprimir">
-                                        <label class="form-check-label" for="flexSwitchCheckDefault">Imprimir factura</label>
-                                    </div> 
                                 </div>
                             </div>
                         </div>
@@ -179,15 +169,12 @@
                 let totalWithoutTax = productPrecio;
                 let totalWithTax = totalWithoutTax * (1 + impuesto / 100);
 
-                //En este codigo se crean inputs de manera oculta para enviar los datos 
-                //al controlador
                 $('.items').append(
                     '<tr class="selected-product" data-id="' + productId + '">' +
-                    '<td>' + productNombre + '<input type="hidden" name="productos[' + productId + '][producto_id]" value="' + productId + '"></td>' +
-                    '<td><input type="number" class="form-control quantity" min="1" value="1" name="productos[' + productId + '][cantidad]" data-precio="' +
+                    '<td>' + productNombre + '<input type="hidden" name="compras_items[' + productId + '][producto_id]" value="' + productId + '"></td>' +
+                    '<td><input type="number" class="form-control quantity" min="1" value="1" name="compras_items[' + productId + '][cantidad]" data-precio="' +
                     productPrecio + '" data-impuesto="' + impuesto + '"></td>' +
-                    '<td>' + productPrecio + '<input type="hidden" name="productos[' + productId + '][precio]" value="' + productPrecio + '"></td>' +
-                    '<td>' + impuesto + '%<input type="hidden" name="productos[' + productId + '][impuesto]" value="' + impuesto + '"></td>' +
+                    '<td>' + productPrecio + '<input type="hidden" name="compras_items[' + productId + '][precio]" value="' + productPrecio + '"></td>' +
                     '<td class="total">' + totalWithTax.toFixed(2) + '</td>' +
                     '<td><button class="btn btn-danger remove-product" data-id="' + productId +
                     '">Eliminar</button></td>' +
@@ -218,22 +205,14 @@
             let subtotal = 0;
             let total = 0;
             $('.total').each(function() {
-                subtotal += parseFloat($(this).closest('tr').find('.quantity').val()) * parseFloat($(this).closest('tr').find('.quantity').data('precio'));
-                total += parseFloat($(this).text());
+                subtotal += parseFloat($(this).text());
             });
             $('#subtotal').text(subtotal.toFixed(2));
             let descuento = parseFloat($('#descuento').val()) || 0;
-            let tipoDescuento = $('#tipoDescuento').val();
-
-            if (tipoDescuento == "1") {
-                descuento = subtotal * (descuento / 100);
-            }
-            
-            $('#total').text((total - descuento).toFixed(2));
+            $('#total').text((subtotal - descuento).toFixed(2));
         }
 
         $('#descuento').on('input', updateTotal);
-        $('#tipoDescuento').on('change', updateTotal);
     });
 </script>
 @endsection

@@ -30,4 +30,9 @@ class Venta extends Model
     {
         return $this->hasOne(Factura::class);
     }
+
+    public function kardex()
+    {
+        return $this->morphMany(Kardex::class, 'transaccionable');
+    }
 }

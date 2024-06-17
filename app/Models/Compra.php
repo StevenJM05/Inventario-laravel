@@ -16,9 +16,13 @@ class Compra extends Model
     ];
 
     use HasFactory;
+    public function kardex()
+    {
+        return $this->morphMany(kardex::class, 'transaccionable');
+    }
 
     public function compra_items()
     {
-        return $this->hasMany(Compra_items::class);
+        return $this->hasMany(ComprasItem::class);
     }
 }

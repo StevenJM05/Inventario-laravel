@@ -38,6 +38,7 @@ class VentaController extends Controller
     //Metodo para crear una venta
     public function store(Request $request)
     {
+        dd($request->all());
         // Validar la solicitud
         $request->validate([
             'cliente' => 'required|string|max:255',

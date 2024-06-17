@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ImpuestosController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 //Rutas del Login 
-Route::view('/', 'login')->name('login');
+Route::view('/login', 'login')->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::view('/menu', 'menu')->middleware('auth')->name('menu');
 Route::get('/cerrar-sesion', [LoginController::class, 'logout'])->name('logout');
@@ -64,6 +65,11 @@ Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
 Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
 Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/Usuario/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+
+//Ruta para compras
+Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
+Route::get('compras/create',[CompraController::class, 'create'])->middleware('auth')->name('compras.create');
+Route::post('/compras', [CompraController::class, 'store'])->middleware('auth')->name('compras.store');
 
 
 

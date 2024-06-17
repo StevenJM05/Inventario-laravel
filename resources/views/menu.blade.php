@@ -81,7 +81,7 @@
             </li>
             <li>
                 <div class="iocn-link">
-                    <a href="#">
+                    <a href="{{route('compras.create')}}">
                         <i class='bx bx-plug'></i>
                         <span class="link_name">Plugins</span>
                     </a>
