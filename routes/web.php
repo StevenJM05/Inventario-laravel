@@ -74,6 +74,8 @@ Route::delete('/Usuario/{id}', [UserController::class, 'destroy'])->name('users.
 Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
 Route::get('compras/create',[CompraController::class, 'create'])->middleware('auth')->name('compras.create');
 Route::post('/compras', [CompraController::class, 'store'])->middleware('auth')->name('compras.store');
+Route::get('/compras/buscar', [CompraController::class, 'buscar'])->name('compras.buscar');
+Route::get('/compras/{id}', [CompraController::class, 'show'])->name('compras.show');
 
 //Kardex
 Route::get('/kardex', [KardexController::class, 'index'])->name('kardex.index');

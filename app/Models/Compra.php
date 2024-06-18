@@ -23,6 +23,6 @@ class Compra extends Model
 
     public function compra_items()
     {
-        return $this->hasMany(ComprasItem::class);
+        return $this->hasMany(ComprasItem::class, 'compra_id');
     }
 }

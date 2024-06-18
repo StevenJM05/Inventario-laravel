@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\CompraItemsResource;
 use App\Models\Compra;
 use App\Models\ComprasItem;
 use App\Models\Kardex;
@@ -14,9 +15,32 @@ class CompraController extends Controller
 {
     public function index()
     {
-        $compras = Compra::with('compras_items.producto')->paginate(10);
+        $compras = Compra::paginate(7);
         return view('compras.index', compact('compras'));
     }
+
+    public function buscar(Request $request)
+    {
+        $query = Compra::query();
+
+        // Verificar qué tipo de búsqueda se está realizando
+        if ($request->filled('fecha_inicio') && $request->filled('fecha_fin')) {
+            $query->whereBetween('created_at', [$request->fecha_inicio, $request->fecha_fin]);
+        }
+
+        // Obtener los resultados paginados
+        $compras = $query->paginate(10);
+
+        // Devolver la vista con los datos filtrados
+        return view('compras.index', compact('compras'));
+    }
+
+    public function show($id)
+    {
+        $compra_items = ComprasItem::where('compra_id', $id)->get();
+        return response()->json(CompraItemsResource::collection($compra_items));
+    }
+
 
     public function create()
     {
@@ -26,7 +50,7 @@ class CompraController extends Controller
 
     public function store(Request $request)
     {
-       
+
         // Validar la solicitud
         $request->validate(
             [
@@ -64,7 +88,7 @@ class CompraController extends Controller
 
         //creamos los items de la compra
         foreach ($productos as $producto) {
-            $compraItem= ComprasItem::create([
+            $compraItem = ComprasItem::create([
                 'compra_id' => $compra->id,
                 'producto_id' => $producto['producto_id'],
                 'cantidad' => $producto['cantidad'],
@@ -75,7 +99,7 @@ class CompraController extends Controller
             $this->actualizarKardex($compraItem, 'entrada');
         }
 
-        return redirect()->route('compras.create')->with('success', 'Compra creada exitosamente'); 
+        return redirect()->route('compras.create')->with('success', 'Compra creada exitosamente');
     }
 
     // Método para actualizar el kardex
@@ -104,4 +128,3 @@ class CompraController extends Controller
         ]);
     }
 }
-

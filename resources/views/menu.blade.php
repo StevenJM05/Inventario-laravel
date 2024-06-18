@@ -67,7 +67,7 @@
                 <ul class="sub-menu">
                     <li><a class="link_name" href="#">Compras</a></li>
                     <li><a href="{{route('compras.create')}}">Realizar una compra</a></li>
-                    <li><a href="#">Ver compras</a></li>
+                    <li><a href="{{route('compras.index')}}">Ver compras</a></li>
                 </ul>
             </li>
 
