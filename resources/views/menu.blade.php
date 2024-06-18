@@ -21,12 +21,12 @@
         </div>
         <ul class="nav-links">
             <li>
-                <a href="#">
+                <a href="{{route('dashboard')}}">
                     <i class='bx bx-grid-alt'></i>
                     <span class="link_name">Dashboard</span>
                 </a>
                 <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Categorias</a></li>
+                    <li><a class="link_name" href="">Dashboard</a></li>
                 </ul>
             </li>
             <li>
@@ -152,6 +152,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @yield('scripts')
 </body>
 

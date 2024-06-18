@@ -15,7 +15,8 @@ class DashboardController extends Controller
         $totalCompras = Compra::sum('total');
         $productosCount = Producto::count();
         $usuariosCount = User::count();
+        $productosRecientes = Producto::latest()->take(5)->get();
 
-        return view('dashboard.index', compact('totalVentas', 'totalCompras', 'productosCount', 'usuariosCount'));
+        return view('dashboard.index', compact('totalVentas', 'totalCompras', 'productosCount', 'usuariosCount', 'productosRecientes'));
     }
 }
