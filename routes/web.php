@@ -58,6 +58,8 @@ Route::get('/ventas', [VentaController::class, 'index'])->name('ventas.index');
 Route::get('ventas/create', [VentaController::class, 'create'])->middleware('auth')->name('ventas.create');
 Route::post('/ventas', [VentaController::class, 'store'])->middleware('auth')->name('ventas.store');
 Route::get('ventas/{id}', [VentaController::class, 'show'])->name('ventas.show');
+Route::get('ventas-buscar', [VentaController::class, 'buscar'])->name('ventas.buscar');
+
 
 //Factura
 Route::get('/ventas/{id}/factura', [VentaController::class, 'generarFacturaPDF'])->name('ventas.factura.pdf');

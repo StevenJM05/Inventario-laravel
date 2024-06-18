@@ -38,7 +38,7 @@
                     <i class='bx bxs-chevron-down arrow'></i>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Acciones</a></li>
+                    <li><a class="link_name" href="#">Inventario</a></li>
                     <li><a href="{{route('categorias.index')}}">Categorias</a></li>
                     <li><a href="{{route('marcas.index')}}">Marcas</a></li>
                     <li><a href="{{route('unidadesMedida.index')}}">Unidades de medida</a></li>
@@ -47,29 +47,45 @@
                 </ul>
             </li>
             <li>
+                <a href="{{route('users.index')}}">
+                    <i class='bx bxs-user-account'></i>
+                    <span class="link_name">User</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="link_name" href="#">Usuarios</a></li>
+                </ul>
+            </li>
+            
+            <li>
                 <div class="iocn-link">
                     <a href="#">
-                        <i class='bx bx-book-alt'></i>
-                        <span class="link_name">Posts</span>
+                        <i class='bx bxs-truck'></i>
+                        <span class="link_name">Compras</span>
                     </a>
                     <i class='bx bxs-chevron-down arrow'></i>
                 </div>
                 <ul class="sub-menu">
-                    <li><a class="link_name" href="#">Posts</a></li>
-                    <li><a href="#">Web Design</a></li>
-                    <li><a href="#">Login Form</a></li>
-                    <li><a href="#">Card Design</a></li>
+                    <li><a class="link_name" href="#">Compras</a></li>
+                    <li><a href="{{route('compras.create')}}">Realizar una compra</a></li>
+                    <li><a href="#">Ver compras</a></li>
                 </ul>
             </li>
+
             <li>
-                <a href="{{route('users.index')}}">
-                    <i class='bx bx-pie-chart-alt-2'></i>
-                    <span class="link_name">Analytics</span>
-                </a>
-                <ul class="sub-menu blank">
-                    <li><a class="link_name" href="#">Analytics</a></li>
+                <div class="iocn-link">
+                    <a href="#">
+                        <i class='bx bxs-cart-add'></i>
+                        <span class="link_name">Ventas</span>
+                    </a>
+                    <i class='bx bxs-chevron-down arrow'></i>
+                </div>
+                <ul class="sub-menu">
+                    <li><a class="link_name" href="#">Ventas</a></li>
+                    <li><a href="{{route('ventas.create')}}">Realizar Ventas</a></li>
+                    <li><a href="{{route('ventas.index')}}">Ver ventas</a></li>
                 </ul>
             </li>
+
             <li>
                 <a href="{{route('kardex.index')}}">
                     <i class='bx bx-line-chart'></i>
@@ -81,7 +97,7 @@
             </li>
             <li>
                 <div class="iocn-link">
-                    <a href="{{route('compras.create')}}">
+                    <a href="#">
                         <i class='bx bx-plug'></i>
                         <span class="link_name">Plugins</span>
                     </a>
@@ -95,7 +111,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{route('ventas.index')}}">
+                <a href="">
                     <i class='bx bx-compass'></i>
                     <span class="link_name">Explore</span>
                 </a>
@@ -104,7 +120,7 @@
                 </ul>
             </li>
             <li>
-                <a href="{{route('ventas.create')}}">
+                <a href="">
                     <i class='bx bx-history'></i>
                     <span class="link_name">History</span>
                 </a>

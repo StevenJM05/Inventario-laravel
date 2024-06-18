@@ -24,6 +24,28 @@ class VentaController extends Controller
         return view('ventas.index', compact('ventas', 'users', 'productos'));
     }
 
+    public function buscar(Request $request)
+    {
+        $query = Venta::query()->with('factura');
+
+        // Verificar qué tipo de búsqueda se está realizando
+        if ($request->filled('fecha_inicio') && $request->filled('fecha_fin')) {
+            $query->whereHas('factura', function ($query) use ($request) {
+                $query->whereBetween('created_at', [$request->fecha_inicio, $request->fecha_fin]);
+            });
+        } elseif ($request->filled('codigo_factura')) {
+            $query->whereHas('factura', function ($query) use ($request) {
+                $query->where('numero_factura', 'like', '%' . $request->codigo_factura . '%');
+            });
+        }
+
+        // Obtener los resultados paginados
+        $ventas = $query->paginate(10);
+
+        // Devolver la vista con los datos filtrados
+        return view('ventas.index', compact('ventas'));
+    }
+
     //Metodo para mostrar los productos de la venta
     public function show($id)
     {
@@ -82,7 +104,7 @@ class VentaController extends Controller
 
         // Crear los elementos de la venta
         foreach ($productos as $producto) {
-            $ventaItem= VentasItem::create([
+            $ventaItem = VentasItem::create([
                 'venta_id' => $venta->id,
                 'producto_id' => $producto['producto_id'],
                 'cantidad' => $producto['cantidad'],

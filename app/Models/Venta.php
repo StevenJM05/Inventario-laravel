@@ -28,7 +28,7 @@ class Venta extends Model
     }
     public function factura()
     {
-        return $this->hasOne(Factura::class);
+        return $this->hasOne(Factura::class, 'ventas_id');
     }
 
     public function kardex()

@@ -7,18 +7,39 @@
                 <h1>Ventas realizadas</h1>
             </div>
             <div class="card-body">
+                <!-- Formulario de búsqueda -->
+                <form action="{{ route('ventas.buscar') }}" method="GET" class="mb-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="fecha_inicio" class="form-label">Fecha de inicio:</label>
+                            <input type="date" id="fecha_inicio" name="fecha_inicio" class="form-control">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="fecha_fin" class="form-label">Fecha de fin:</label>
+                            <input type="date" id="fecha_fin" name="fecha_fin" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label for="codigo_factura" class="form-label">Código de factura:</label>
+                            <input type="text" id="codigo_factura" name="codigo_factura" class="form-control">
+                        </div>
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-primary mt-4">Buscar</button>
+                        </div>
+                    </div>
+                </form>
+
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <td>ID</td>
-                            <td>Vendedor</td>
-                            <td>Cantidad de productos</td>
-                            <td>Subtotal</td>
-                            <td>Descuentos Totales</td>
-                            <td>Impuestos</td>
-                            <td>Total</td>
-                            <td>Productos</td>
-                            <td>Factura</td>
+                            <th>ID</th>
+                            <th>Vendedor</th>
+                            <th>Cantidad de productos</th>
+                            <th>Subtotal</th>
+                            <th>Descuentos Totales</th>
+                            <th>Impuestos</th>
+                            <th>Total</th>
+                            <th>Productos</th>
+                            <th>Factura</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -45,7 +66,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $ventas->links() }}
+                {{ $ventas->appends(request()->input())->links() }} <!-- Mantener los parámetros de búsqueda al paginar -->
             </div>
         </div>
 
