@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CompraController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ImpuestosController;
 use App\Http\Controllers\KardexController;
 use App\Http\Controllers\LoginController;
@@ -74,6 +75,9 @@ Route::post('/compras', [CompraController::class, 'store'])->middleware('auth')-
 
 //Kardex
 Route::get('/kardex', [KardexController::class, 'index'])->name('kardex.index');
+
+//Dashboard
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard')->middleware('auth');
 
 
 
