@@ -71,7 +71,7 @@
                 </ul>
             </li>
             <li>
-                <a href="#">
+                <a href="{{route('kardex.index')}}">
                     <i class='bx bx-line-chart'></i>
                     <span class="link_name">Chart</span>
                 </a>

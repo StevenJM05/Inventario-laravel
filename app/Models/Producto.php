@@ -44,11 +44,16 @@ class Producto extends Model
     
     public function compras_items()
     {
-        return $this->hasMany(Compras_item::class);
+        return $this->hasMany(ComprasItem::class);
     }
 
     public function ventas_items()
     {
         return $this->hasMany(VentasItem::class);
+    }
+
+    public function kardexEntries()
+    {
+        return $this->hasMany(Kardex::class);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Compra;
 use App\Models\ComprasItem;
+use App\Models\Kardex;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,13 +64,44 @@ class CompraController extends Controller
 
         //creamos los items de la compra
         foreach ($productos as $producto) {
-            ComprasItem::create([
+            $compraItem= ComprasItem::create([
                 'compra_id' => $compra->id,
                 'producto_id' => $producto['producto_id'],
                 'cantidad' => $producto['cantidad'],
-                'precio' => $producto['precio'],
+                'precio_unitario' => $producto['precio'],
                 'total' => $producto['cantidad'] * $producto['precio']
             ]);
+            // Actualizar el kardex
+            $this->actualizarKardex($compraItem, 'entrada');
         }
+
+        return redirect()->route('compras.create')->with('success', 'Compra creada exitosamente'); 
+    }
+
+    // Método para actualizar el kardex
+    private function actualizarKardex(ComprasItem $compraItem, $tipoMovimiento)
+    {
+        $producto = Producto::findOrFail($compraItem->producto_id);
+        $stockAnterior = $producto->stock;
+        $stockActual = $tipoMovimiento == 'entrada' ? $stockAnterior + $compraItem->cantidad : $stockAnterior - $compraItem->cantidad;
+
+        // Actualizar el stock del producto
+        $producto->stock = $stockActual;
+        $producto->save();
+
+        // Crear el registro en el kardex
+        Kardex::create([
+            'producto_id' => $compraItem->producto_id,
+            'transaccionable_id' => $compraItem->id,
+            'transaccionable_type' => ComprasItem::class,
+            'cantidad' => $compraItem->cantidad,
+            'precio_unitario' => $compraItem->precio_unitario,
+            'total' => $compraItem->total,
+            'tipo_movimiento' => $tipoMovimiento,
+            'stock_anterior' => $stockAnterior,
+            'stock_actual' => $stockActual,
+            'fecha' => now(),
+        ]);
     }
 }
+

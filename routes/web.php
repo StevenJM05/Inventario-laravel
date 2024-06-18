@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\CompraController;
 use App\Http\Controllers\ImpuestosController;
+use App\Http\Controllers\KardexController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\ProductoController;
@@ -70,6 +71,9 @@ Route::delete('/Usuario/{id}', [UserController::class, 'destroy'])->name('users.
 Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
 Route::get('compras/create',[CompraController::class, 'create'])->middleware('auth')->name('compras.create');
 Route::post('/compras', [CompraController::class, 'store'])->middleware('auth')->name('compras.store');
+
+//Kardex
+Route::get('/kardex', [KardexController::class, 'index'])->name('kardex.index');
 
 
 

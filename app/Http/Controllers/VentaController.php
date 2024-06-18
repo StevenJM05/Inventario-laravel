@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Http\Resources\VentasItemsResource;
 use App\Models\Factura;
+use App\Models\Kardex;
 use App\Models\Producto;
 use App\Models\User;
 use App\Models\Venta;
@@ -38,7 +40,7 @@ class VentaController extends Controller
     //Metodo para crear una venta
     public function store(Request $request)
     {
-        dd($request->all());
+
         // Validar la solicitud
         $request->validate([
             'cliente' => 'required|string|max:255',
@@ -80,7 +82,7 @@ class VentaController extends Controller
 
         // Crear los elementos de la venta
         foreach ($productos as $producto) {
-            VentasItem::create([
+            $ventaItem= VentasItem::create([
                 'venta_id' => $venta->id,
                 'producto_id' => $producto['producto_id'],
                 'cantidad' => $producto['cantidad'],
@@ -88,6 +90,9 @@ class VentaController extends Controller
                 'impuesto' => $producto['impuesto'],
                 'total' => $producto['cantidad'] * $producto['precio'] * (1 + $producto['impuesto'] / 100)
             ]);
+
+            // Actualizar el kardex
+            $this->actualizarKardex($ventaItem, 'salida');
         }
 
         // Crear la factura
@@ -102,7 +107,7 @@ class VentaController extends Controller
         ]);
 
         //Verificar si se tiene que imprimir la factura
-        
+
         if ($request->has('imprimir')) {
             return $this->generarFacturaPDF($venta->id);
         }
@@ -118,7 +123,7 @@ class VentaController extends Controller
         $fecha = $current_date->format('Ymd');
         return $id_venta . '' . $id_usuario . '' . $fecha;
     }
-    
+
     //Metodo para generar el pdf
     public function generarFacturaPDF($id)
     {
@@ -133,5 +138,30 @@ class VentaController extends Controller
         $pdf = Pdf::loadView('ventas.factura_pdf', $data);
 
         return $pdf->download('factura_' . $venta->id . '.pdf');
+    }
+    // Método para actualizar el kardex
+    private function actualizarKardex(VentasItem $ventaItem, $tipoMovimiento)
+    {
+        $producto = Producto::findOrFail($ventaItem->producto_id);
+        $stockAnterior = $producto->stock;
+        $stockActual = $tipoMovimiento == 'entrada' ? $stockAnterior + $ventaItem->cantidad : $stockAnterior - $ventaItem->cantidad;
+
+        // Actualizar el stock del producto
+        $producto->stock = $stockActual;
+        $producto->save();
+
+        // Crear el registro en el kardex
+        Kardex::create([
+            'producto_id' => $ventaItem->producto_id,
+            'transaccionable_id' => $ventaItem->id,
+            'transaccionable_type' => VentasItem::class,
+            'cantidad' => $ventaItem->cantidad,
+            'precio_unitario' => $ventaItem->precio_unidad,
+            'total' => $ventaItem->total,
+            'tipo_movimiento' => $tipoMovimiento,
+            'stock_anterior' => $stockAnterior,
+            'stock_actual' => $stockActual,
+            'fecha' => now(),
+        ]);
     }
 }
