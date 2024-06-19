@@ -16,6 +16,19 @@ class UserController extends Controller
         return view('usuarios.index', compact('users', 'roles'));
     }
 
+    public function updatePassword(Request $request, $id)
+    {
+        $request->validate([
+            'new_password' => 'required|string|min:8|confirmed',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return redirect()->route('users.index')->with('success', 'Contraseña actualizada exitosamente.');
+    }
+
     // Registro de usuario
     public function store(Request $request)
     {

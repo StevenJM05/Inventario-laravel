@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 //Rutas del Login 
-Route::view('/login', 'login')->name('login');
+Route::view('/', 'login')->name('inicio');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 Route::view('/menu', 'menu')->middleware('auth')->name('menu');
 Route::get('/cerrar-sesion', [LoginController::class, 'logout'])->name('logout');
@@ -69,6 +69,7 @@ Route::get('/usuarios', [UserController::class, 'index'])->name('users.index');
 Route::post('/usuarios', [UserController::class, 'store'])->name('users.store');
 Route::put('/usuarios/{id}', [UserController::class, 'update'])->name('users.update');
 Route::delete('/Usuario/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::put('users/{user}/update-password', [UserController::class, 'updatePassword'])->name('users.updatePassword');
 
 //Ruta para compras
 Route::get('/compras', [CompraController::class, 'index'])->name('compras.index');
